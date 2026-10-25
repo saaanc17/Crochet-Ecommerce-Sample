@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARTÉmis | Handmade Crochet</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #FF2D78 !important;
+            color: #fff !important;
+            font-family: 'Poppins', Arial, sans-serif;
+            position: relative;
+            z-index: 1;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url('flower bg.jpg') center center/cover no-repeat;
+            opacity: 0.35;
+            filter: blur(4px);
+            z-index: 0;
+            pointer-events: none;
+        }
+        .hero {
+            position: relative;
+            z-index: 1;
+            background: transparent;
+            padding: 48px 0 60px;
+            text-align: left;
+            color: #fff;
+        }
+        .hero-image {
+            width: 100%;
+            max-height: 520px;
+            object-fit: cover;
+            border-radius: 24px;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
+        }
+        .hero-copy {
+            position: relative;
+            z-index: 1;
+            padding: 1.75rem 1.85rem 1.9rem;
+            border-radius: 28px;
+            background: linear-gradient(165deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 182, 213, 0.16) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.35);
+            box-shadow: 0 16px 40px rgba(80, 8, 48, 0.18);
+            backdrop-filter: blur(10px);
+        }
+        .hero-kicker {
+            display: inline-block;
+            margin-bottom: 0.7rem;
+            padding: 0.28rem 0.8rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+        .hero-title {
+            margin: 0 0 0.35rem;
+            font-family: 'Poppins', Arial, sans-serif;
+            font-size: clamp(1.15rem, 2.4vw, 1.45rem);
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            color: rgba(255, 255, 255, 0.88);
+        }
+        .hero-title span {
+            display: block;
+            margin-top: 0.1rem;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: clamp(3.1rem, 7vw, 4.6rem);
+            font-weight: 700;
+            font-style: italic;
+            line-height: 0.92;
+            letter-spacing: 0.01em;
+            color: #fff;
+            text-shadow: 0 6px 24px rgba(80, 8, 48, 0.28);
+        }
+        .hero-title span::after {
+            content: "";
+            display: block;
+            width: 4.5rem;
+            height: 3px;
+            margin: 0.85rem 0 1.15rem;
+            border-radius: 99px;
+            background: linear-gradient(90deg, #fff 0%, #FFB6D5 100%);
+        }
+        .hero-message {
+            max-width: 34rem;
+            margin-bottom: 0.85rem;
+            font-size: 1.02rem;
+            font-weight: 400;
+            line-height: 1.75;
+            color: rgba(255, 255, 255, 0.92);
+        }
+        .hero-message:last-of-type {
+            margin-bottom: 1.35rem;
+        }
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            padding: 0.72rem 1.45rem;
+            border: none;
+            border-radius: 999px;
+            background: #fff;
+            color: #C2187A;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            box-shadow: 0 8px 22px rgba(255, 255, 255, 0.18);
+        }
+        .hero-cta:hover,
+        .hero-cta:focus {
+            background: #fff;
+            color: #C2187A;
+            transform: scale(1.05);
+            opacity: 1;
+        }
+        @media (max-width: 767.98px) {
+            .hero {
+                text-align: center;
+            }
+            .hero-copy {
+                padding: 1.4rem 1.25rem 1.55rem;
+            }
+            .hero-title span::after {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .hero-message {
+                max-width: none;
+            }
+            .hero-image {
+                max-height: 360px;
+                margin-bottom: 0.35rem;
+            }
+        }
+        .section-heading {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .section-heading p {
+            margin: 0 0 0.4rem;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        .section-heading h2 {
+            margin: 0;
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: clamp(2.1rem, 4vw, 3rem);
+            font-weight: 700;
+            font-style: italic;
+        }
+        [id="wearables"],
+        [id="keychains"],
+        [id="flowers"],
+        [id="amigurumi"],
+        [id="about"] {
+            scroll-margin-top: 96px;
+        }
+        .featured-products .card {
+            overflow: hidden;
+            min-height: 430px;
+            max-width: 370px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(8px);
+        }
+        .featured-products img {
+            width: 100%;
+            height: 270px;
+            object-fit: cover;
+        }
+        .product-media {
+            position: relative;
+        }
+        .product-badge {
+            position: absolute;
+            top: 14px;
+            left: 14px;
+            z-index: 2;
+            padding: 0.28rem 0.7rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.92);
+            color: #C2187A;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: none;
+            font-family: 'Poppins', Arial, sans-serif;
+            transition: transform 0.18s cubic-bezier(0.4,0,0.2,1), box-shadow 0.18s cubic-bezier(0.4,0,0.2,1);
+        }
+        .card:hover {
+            transform: scale(1.06);
+            box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
+        }
+        .about {
+            padding: 20px 0 70px;
+        }
+        .about-card {
+            height: 100%;
+            padding: 1.6rem 1.4rem;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            backdrop-filter: blur(8px);
+        }
+        .about-card i {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 46px;
+            margin-bottom: 0.9rem;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.18);
+            font-size: 1.25rem;
+        }
+        .about-card h3 {
+            margin-bottom: 0.55rem;
+            font-size: 1.15rem;
+            font-weight: 700;
+        }
+        .about-card p {
+            margin: 0;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.92);
+        }
+        .card:hover {
+            transform: scale(1.06);
+            box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
+        }
+        .card-title, .card-text {
+            color: #fff;
+        }
+        .btn, .btn-primary, .btn-outline-primary {
+            transition: transform 0.18s cubic-bezier(0.4,0,0.2,1), box-shadow 0.18s cubic-bezier(0.4,0,0.2,1);
+        }
+        .btn:hover, .btn-primary:hover, .btn-outline-primary:hover {
+            transform: scale(1.07);
+            box-shadow: 0 4px 16px 0 rgba(0,0,0,0.12);
+            background-color: #fff;
+            color: #C2187A;
+            opacity: 0.9;
+        }
+        .view-details-btn, .btn-outline-primary {
+            color: #fff !important;
+            border: 2px solid #fff;
+        }
+        .view-details-btn:hover, .btn-outline-primary:hover {
+            background-color: #fff;
+            color: #C2187A !important;
+            border: 2px solid #fff;
+            opacity: 0.9;
+        }
+        /* ── Product price & qty ── */
+        .product-price {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 0.6rem;
+        }
+        .qty-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.7rem;
+        }
+        .qty-btn {
+            width: 30px; height: 30px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.18);
+            border: 1.5px solid rgba(255,255,255,0.5);
+            color: #fff; font-size: 1rem; font-weight: 700;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; line-height: 1;
+            transition: background 0.15s;
+        }
+        .qty-btn:hover { background: rgba(255,255,255,0.35); }
+        .qty-value {
+            min-width: 24px; text-align: center;
+            font-size: 0.95rem; font-weight: 700; color: #fff;
+        }
+        .wishlist-btn {
+            color: #fff !important;
+            border: 2px solid #fff;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.88rem;
+            padding: 0.45rem 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: background 0.18s, color 0.18s, transform 0.18s;
+        }
+        .wishlist-btn:hover {
+            background: #FFF0F5;
+            color: #C2185B !important;
+            transform: scale(1.05);
+        }
+        .wishlist-btn.added {
+            background: #FFF0F5;
+            color: #C2185B !important;
+        }
+        .wishlist-btn.added i::before {
+            content: "\f415";
+        }
+        /* ── Wishlist badge on nav ── */
+        .nav-wishlist-wrap {
+            position: relative;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .wishlist-badge {
+            position: absolute;
+            top: -4px; right: -6px;
+            min-width: 18px; height: 18px;
+            border-radius: 999px;
+            background: #FF80AB;
+            color: #880E4F;
+            font-size: 0.65rem;
+            font-weight: 800;
+            display: flex; align-items: center; justify-content: center;
+            padding: 0 4px;
+            line-height: 1;
+            display: none;
+        }
+        /* ── Contact Modal ── */
+        .contact-overlay {
+            display: none;
+            position: fixed; inset: 0; z-index: 9500;
+            background: rgba(80,8,48,0.85);
+            backdrop-filter: blur(6px);
+            align-items: center; justify-content: center;
+            padding: 1rem;
+        }
+        .contact-overlay.active { display: flex; }
+        .contact-modal {
+            background: linear-gradient(155deg, rgba(255,255,255,0.18) 0%, rgba(255,182,213,0.12) 100%);
+            border: 1px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(14px);
+            border-radius: 24px;
+            padding: 2rem 2rem 1.8rem;
+            width: 100%; max-width: 480px;
+            position: relative;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+            color: #fff;
+            font-family: 'Poppins', Arial, sans-serif;
+        }
+        .contact-modal h2 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic; font-size: 2rem; font-weight: 700;
+            margin: 0 0 0.2rem;
+        }
+        .contact-modal h2::after {
+            content: ""; display: block; width: 3rem; height: 3px;
+            margin: 0.6rem 0 1.2rem; border-radius: 99px;
+            background: linear-gradient(90deg, #fff 0%, #FFB6D5 100%);
+        }
+        .contact-modal p {
+            font-size: 0.88rem; color: rgba(255,255,255,0.78); margin-bottom: 1.2rem;
+        }
+        .contact-modal .close-contact {
+            position: absolute; top: 1rem; right: 1rem;
+            width: 34px; height: 34px; border-radius: 50%;
+            background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4);
+            color: #fff; font-size: 1.1rem;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: background 0.15s;
+        }
+        .contact-modal .close-contact:hover { background: rgba(255,255,255,0.28); }
+        .contact-form label {
+            display: block; font-size: 0.78rem; font-weight: 600;
+            letter-spacing: 0.08em; text-transform: uppercase;
+            color: rgba(255,255,255,0.75); margin-bottom: 0.3rem;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%; padding: 0.6rem 0.9rem; border-radius: 10px;
+            background: rgba(255,255,255,0.12); border: 1.5px solid rgba(255,255,255,0.3);
+            color: #fff; font-family: 'Poppins', Arial, sans-serif;
+            font-size: 0.9rem; margin-bottom: 1rem; outline: none;
+            transition: border-color 0.15s;
+        }
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder { color: rgba(255,255,255,0.45); }
+        .contact-form input:focus,
+        .contact-form textarea:focus { border-color: rgba(255,255,255,0.7); }
+        .contact-form textarea { resize: vertical; min-height: 100px; }
+        .contact-form .send-btn {
+            width: 100%; padding: 0.75rem; border: none; border-radius: 999px;
+            background: #fff; color: #C2187A;
+            font-family: 'Poppins', Arial, sans-serif;
+            font-size: 0.95rem; font-weight: 700;
+            cursor: pointer; transition: transform 0.15s, opacity 0.15s;
+        }
+        .contact-form .send-btn:hover { transform: scale(1.02); opacity: 0.92; }
+
+        /* ── Wishlist toast ── */
+        .wishlist-toast {
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            z-index: 9999;
+            background: linear-gradient(135deg, #C2185B 0%, #FF2D78 100%);
+            color: #FFF0F5;
+            padding: 0.6rem 1.4rem;
+            border-radius: 999px;
+            font-family: 'Poppins', Arial, sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 8px 24px rgba(194,24,122,0.35);
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        .wishlist-toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+        .navbar, .navbar-light, .bg-light {
+            position: sticky;
+            top: 0;
+            z-index: 3000;
+            background: linear-gradient(90deg, #C2185B 0%, #AD1457 100%) !important;
+            box-shadow: 0 4px 24px 0 rgba(0,0,0,0.28);
+            border-radius: 0 0 18px 18px;
+            backdrop-filter: blur(6px);
+        }
+        .navbar-collapse {
+            overflow: visible;
+        }
+        .navbar-brand, .nav-link, .navbar-nav .nav-link.active {
+            color: #FFF0F5 !important;
+            font-family: 'Poppins', Arial, sans-serif;
+            font-weight: 700;
+        }
+        .navbar-brand {
+            color: #FFF0F5 !important;
+            font-family: 'Poppins', Arial, sans-serif;
+            font-weight: 900;
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+            transition: transform 0.2s cubic-bezier(0.4,0,0.2,1);
+        }
+        .navbar-brand:hover {
+            transform: scale(1.08);
+        }
+        .navbar-toggler {
+            border-color: rgba(255,240,245,0.6);
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255,240,245,1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+        }
+        .nav-link {
+            transition: transform 0.18s cubic-bezier(0.4,0,0.2,1);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 0.85rem !important;
+        }
+        .nav-link i {
+            font-size: 1.45rem;
+            line-height: 1;
+        }
+        .nav-link:hover, .navbar-nav .nav-link.active:hover {
+            transform: scale(1.18);
+            text-decoration: none;
+        }
+        .navbar-nav .dropdown > .nav-link:hover {
+            transform: none;
+        }
+        .navbar-nav {
+            gap: 0.35rem;
+        }
+        .navbar-nav .dropdown-toggle::after {
+            display: none;
+        }
+        .navbar-nav .nav-item.dropdown {
+            position: relative;
+        }
+        .navbar .dropdown-menu {
+            display: block;
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+            top: calc(100% - 2px);
+            right: 0;
+            left: auto;
+            margin: 0;
+            padding: 0.45rem;
+            border: none;
+            border-radius: 16px;
+            background: #fff;
+            box-shadow: 0 12px 28px rgba(80, 8, 48, 0.3);
+            min-width: 11.5rem;
+            z-index: 1050;
+            transition: opacity 0.15s ease, visibility 0.15s ease;
+        }
+        .navbar .dropdown-menu::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: -18px;
+            height: 18px;
+        }
+        .navbar-nav .nav-item.dropdown:hover > .dropdown-menu,
+        .navbar-nav .nav-item.dropdown:focus-within > .dropdown-menu {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .navbar .dropdown-item {
+            color: #C2187A;
+            font-family: 'Poppins', Arial, sans-serif;
+            font-weight: 600;
+            font-size: 0.92rem;
+            border-radius: 10px;
+            padding: 0.55rem 0.85rem;
+        }
+        .navbar .dropdown-item:hover,
+        .navbar .dropdown-item:focus {
+            background: linear-gradient(90deg, #FF2D78 0%, #FF80AB 100%);
+            color: #fff;
+        }
+        .cursor-tip {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            pointer-events: none;
+            opacity: 0;
+            transform: translate(14px, 18px) scale(0.92);
+            padding: 0.38rem 0.78rem;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #C2185B 0%, #FF2D78 100%);
+            color: #FFF0F5;
+            font-family: 'Poppins', Arial, sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            box-shadow: 0 8px 22px rgba(194, 24, 122, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.45);
+            white-space: nowrap;
+            transition: opacity 0.16s ease, transform 0.16s ease;
+        }
+        .cursor-tip.is-visible {
+            opacity: 1;
+            transform: translate(14px, 18px) scale(1);
+        }
+        footer {
+            background: rgba(173, 20, 87, 0.6);
+            color: #fff;
+            padding: 42px 0 22px;
+            text-align: left;
+            font-family: 'Poppins', Arial, sans-serif;
+            border-top: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        footer h3,
+        footer h4 {
+            font-weight: 700;
+        }
+        footer h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 2rem;
+        }
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: #FFB6D5;
+        }
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+        .footer-social {
+            display: flex;
+            gap: 0.7rem;
+            font-size: 1.35rem;
+        }
+        .footer-copy {
+            margin-top: 1.8rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.16);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="ARTEmis.jpg" alt="ARTÉmis Logo" style="height: 40px; width: 40px; object-fit: cover; border-radius: 50%; margin-right: 12px; vertical-align: middle; transform: scale(1.30);">
+                ARTÉmis
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" aria-label="Home" data-tip="Home">
+                            <i class="bi bi-house-door-fill"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#products" id="productsDropdown" aria-haspopup="true" aria-expanded="false" aria-label="Products" data-tip="Products">
+                            <i class="bi bi-grid-fill"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="productsDropdown">
+                            <li><a class="dropdown-item" href="wearables.html">Wearables</a></li>
+                            <li><a class="dropdown-item" href="keychains.html">Keychains</a></li>
+                            <li><a class="dropdown-item" href="flowers.html">Flowers</a></li>
+                            <li><a class="dropdown-item" href="amigurumi.html">Amigurumi</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="wishlist.html" aria-label="Wishlist" data-tip="Wishlist">
+                            <span class="nav-wishlist-wrap">
+                                <i class="bi bi-heart"></i>
+                                <span class="wishlist-badge" id="wishlistBadge"></span>
+                            </span>
+                        </a>
+                    </li>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="row align-items-center g-4">
+                <div class="col-md-6">
+                    <img src="first.jpg" alt="ARTÉmis featured crochet" class="hero-image">
+                </div>
+                <div class="col-md-6 hero-copy">
+                    <p class="hero-kicker">Handmade with love</p>
+                    <h1 class="hero-title">Welcome to <span>ARTÉmis</span></h1>
+                    <p class="hero-message">Handmade crochet items crafted with love, care, and a touch of creativity. At ARTÉmis, we create unique and cozy pieces designed to bring warmth, charm, and a little bit of joy to everyday life.</p>
+                    <p class="hero-message">Whether you're looking for a thoughtful gift, a cute addition to your collection, or something special made just for you, discover our carefully crafted crochet creations—each one made with heart and attention to detail.</p>
+                    <a href="#products" class="btn hero-cta">Shop Now <i class="bi bi-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured-products py-5" id="products">
+        <div class="container">
+            <div class="section-heading">
+                <p>Shop the collection</p>
+                <h2>Featured Products</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4" id="keychains">
+                    <div class="card">
+                        <div class="product-media">
+                            <span class="product-badge">Keychains</span>
+                            <img id="miniBouquetSlideshow" src="keychains/mini flowers.jpg" class="card-img-top" alt="Mini Bouquet" loading="lazy">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Mini Bouquet</h5>
+                            <p class="card-text">Tiny handmade bouquets that clip onto bags and keys—sweet, lightweight, and full of color.</p>
+                            <p class="product-price">₱120</p>
+                            <div class="qty-row">
+                                <button class="qty-btn" data-action="dec">−</button>
+                                <span class="qty-value">1</span>
+                                <button class="qty-btn" data-action="inc">+</button>
+                            </div>
+                            <button class="btn wishlist-btn" data-name="Mini Bouquet" data-img="keychains/mini flowers.jpg" data-category="Keychains" data-price="120">
+                                <i class="bi bi-heart"></i> Add to Wishlist
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" id="wearables">
+                    <div class="card">
+                        <div class="product-media">
+                            <span class="product-badge">Wearables</span>
+                            <img id="pattySlideshow" src="clothes/pattytop1.jpg" class="card-img-top" alt="Patty Top" loading="lazy">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Patty Top</h5>
+                            <p class="card-text">A trendy handmade crochet top, perfect for stylish summer outfits and layering.</p>
+                            <p class="product-price">₱850</p>
+                            <div class="qty-row">
+                                <button class="qty-btn" data-action="dec">−</button>
+                                <span class="qty-value">1</span>
+                                <button class="qty-btn" data-action="inc">+</button>
+                            </div>
+                            <button class="btn wishlist-btn" data-name="Patty Top" data-img="clothes/pattytop1.jpg" data-category="Wearables" data-price="850">
+                                <i class="bi bi-heart"></i> Add to Wishlist
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" id="flowers">
+                    <div class="card">
+                        <div class="product-media">
+                            <span class="product-badge">Flowers</span>
+                            <img id="tulipSlideshow" src="flowers/tulip bouquet.jpg" class="card-img-top" alt="Tulip Bouquet" loading="lazy">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Tulip Bouquet</h5>
+                            <p class="card-text">A beautiful handmade crochet tulip bouquet, perfect for brightening up any space or as a thoughtful gift.</p>
+                            <p class="product-price">₱450</p>
+                            <div class="qty-row">
+                                <button class="qty-btn" data-action="dec">−</button>
+                                <span class="qty-value">1</span>
+                                <button class="qty-btn" data-action="inc">+</button>
+                            </div>
+                            <button class="btn wishlist-btn" data-name="Tulip Bouquet" data-img="flowers/tulip bouquet.jpg" data-category="Flowers" data-price="450">
+                                <i class="bi bi-heart"></i> Add to Wishlist
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-4" id="amigurumi">
+                    <div class="card">
+                        <div class="product-media">
+                            <span class="product-badge">Amigurumi</span>
+                            <img src="keychains/miffy keychain.jpg" class="card-img-top" alt="Miffy Keychain" loading="lazy">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Miffy Keychain</h5>
+                            <p class="card-text">A cute crochet Miffy keychain, perfect for bags, keys, or as a gift for fans of the iconic bunny.</p>
+                            <p class="product-price">₱150</p>
+                            <div class="qty-row">
+                                <button class="qty-btn" data-action="dec">−</button>
+                                <span class="qty-value">1</span>
+                                <button class="qty-btn" data-action="inc">+</button>
+                            </div>
+                            <button class="btn wishlist-btn" data-name="Miffy Keychain" data-img="keychains/miffy keychain.jpg" data-category="Keychains" data-price="150">
+                                <i class="bi bi-heart"></i> Add to Wishlist
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="product-media">
+                            <span class="product-badge">Wearables</span>
+                            <img id="swimsuitSlideshow" src="clothes/swimsuit1.jpg" class="card-img-top" alt="Swimsuit" loading="lazy">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Swimsuit</h5>
+                            <p class="card-text">A stylish handmade crochet swimsuit, perfect for summer vibes and beach days.</p>
+                            <p class="product-price">₱1,200</p>
+                            <div class="qty-row">
+                                <button class="qty-btn" data-action="dec">−</button>
+                                <span class="qty-value">1</span>
+                                <button class="qty-btn" data-action="inc">+</button>
+                            </div>
+                            <button class="btn wishlist-btn" data-name="Swimsuit" data-img="clothes/swimsuit1.jpg" data-category="Wearables" data-price="1200">
+                                <i class="bi bi-heart"></i> Add to Wishlist
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="product-media">
+                            <span class="product-badge">Flowers</span>
+                            <img id="chunkySlideshow" src="flowers/chunky bouquet.jpg" class="card-img-top" alt="Chunky Bouquet" loading="lazy">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Chunky Bouquet</h5>
+                            <p class="card-text">A vibrant and plush chunky crochet bouquet, perfect as a unique gift or cheerful decor.</p>
+                            <p class="product-price">₱550</p>
+                            <div class="qty-row">
+                                <button class="qty-btn" data-action="dec">−</button>
+                                <span class="qty-value">1</span>
+                                <button class="qty-btn" data-action="inc">+</button>
+                            </div>
+                            <button class="btn wishlist-btn" data-name="Chunky Bouquet" data-img="flowers/chunky bouquet.jpg" data-category="Flowers" data-price="550">
+                                <i class="bi bi-heart"></i> Add to Wishlist
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-heading">
+                <p>Our story</p>
+                <h2>Made slowly, made with heart</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="about-card">
+                        <i class="bi bi-heart"></i>
+                        <h3>Handmade pieces</h3>
+                        <p>Every item is crocheted by hand, so no two pieces look exactly the same. Small details, soft textures, and careful finishing come first.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="about-card">
+                        <i class="bi bi-stars"></i>
+                        <h3>Thoughtful gifts</h3>
+                        <p>From mini bouquets to wearables, ARTÉmis is made for gifting—something cozy, personal, and a little unexpected.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="about-card">
+                        <i class="bi bi-palette"></i>
+                        <h3>Custom requests</h3>
+                        <p>Want a certain color, size, or character? Reach out and we can talk through a made-to-order piece that feels like yours.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Modal -->
+    <div class="contact-overlay" id="contactOverlay" role="dialog" aria-modal="true" aria-label="Send us a message">
+        <div class="contact-modal">
+            <button class="close-contact" id="closeContactModal" aria-label="Close"><i class="bi bi-x"></i></button>
+            <h2>Say Hello</h2>
+            <p>Have a question, a custom request, or just want to say hi? Send us a message and we'll get back to you soon.</p>
+            <div class="contact-form">
+                <label for="contactName">Your Name</label>
+                <input type="text" id="contactName" placeholder="e.g. Maria Santos">
+
+                <label for="contactEmail">Email or Contact</label>
+                <input type="text" id="contactEmail" placeholder="e.g. maria@email.com or @mariasantos">
+
+                <label for="contactMessage">Message</label>
+                <textarea id="contactMessage" placeholder="What's on your mind?"></textarea>
+
+                <button class="send-btn" id="sendContactBtn">
+                    <i class="bi bi-send"></i> Send Message
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-5">
+                    <h3>ARTÉmis</h3>
+                    <p>Handmade crochet wearables, flowers, keychains, and amigurumi crafted with care.</p>
+                </div>
+                <div class="col-md-3">
+                    <h4 class="h6 mb-3">Explore</h4>
+                    <div class="footer-links">
+                        <a href="#">Home</a>
+                        <a href="#products">Products</a>
+                        <a href="#about">About</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="h6 mb-3">Say hello</h4>
+                    <p class="mb-2">For orders and custom requests, message us on social or email.</p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/artms.ph/?hl=en" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.facebook.com/artemiscloset.ph" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="#" id="openContactModal" aria-label="Email"><i class="bi bi-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <p class="footer-copy mb-0">&copy; 2026 ARTÉmis. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="cursor-tip" id="cursorTip" aria-hidden="true"></div>
+    <div class="wishlist-toast" id="wishlistToast" aria-live="polite"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      const cursorTip = document.getElementById('cursorTip');
+      document.querySelectorAll('[data-tip]').forEach((el) => {
+        el.addEventListener('mouseenter', () => {
+          cursorTip.textContent = el.getAttribute('data-tip');
+          cursorTip.classList.add('is-visible');
+        });
+        el.addEventListener('mousemove', (event) => {
+          cursorTip.style.left = `${event.clientX}px`;
+          cursorTip.style.top = `${event.clientY}px`;
+        });
+        el.addEventListener('mouseleave', () => {
+          cursorTip.classList.remove('is-visible');
+        });
+      });
+      document.querySelectorAll('.dropdown-menu').forEach((menu) => {
+        menu.addEventListener('mouseenter', () => cursorTip.classList.remove('is-visible'));
+      });
+
+      // Slideshow for background images
+      function startSlideshow(id, images, delay) {
+        const image = document.getElementById(id);
+        if (!image || images.length < 2) return;
+        let index = 0;
+        setInterval(() => {
+          index = (index + 1) % images.length;
+          image.src = images[index];
+        }, delay);
+      }
+
+      startSlideshow('miniBouquetSlideshow', [
+        'keychains/mini flowers.jpg',
+        'keychains/mini tulip.jpg'
+      ], 4000);
+      startSlideshow('pattySlideshow', [
+        'clothes/pattytop1.jpg',
+        'clothes/pattytop2.jpg'
+      ], 4000);
+      startSlideshow('tulipSlideshow', [
+        'flowers/tulip bouquet.jpg',
+        'flowers/tulip bouquet2.jpg'
+      ], 4000);
+      startSlideshow('swimsuitSlideshow', [
+        'clothes/swimsuit1.jpg',
+        'clothes/swimsuit2.jpg'
+      ], 4000);
+      startSlideshow('chunkySlideshow', [
+        'flowers/chunky bouquet.jpg',
+        'flowers/chunky bouquet2.jpg',
+        'flowers/chunky bouquet3.jpg',
+        'flowers/chunky bouquet4.jpg'
+      ], 4000);
+
+      // ── Wishlist ──
+      const toast = document.getElementById('wishlistToast');
+      let toastTimer;
+
+      function showToast(msg) {
+        toast.textContent = msg;
+        toast.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
+      }
+
+      function getWishlist() {
+        return JSON.parse(localStorage.getItem('artemis_wishlist') || '[]');
+      }
+
+      function saveWishlist(list) {
+        localStorage.setItem('artemis_wishlist', JSON.stringify(list));
+      }
+
+      function updateBadge() {
+        const badge = document.getElementById('wishlistBadge');
+        if (!badge) return;
+        const total = getWishlist().reduce((sum, i) => sum + (i.qty || 1), 0);
+        badge.textContent = total;
+        badge.style.display = total > 0 ? 'flex' : 'none';
+      }
+
+      function syncButtons() {
+        const wishlist = getWishlist();
+        document.querySelectorAll('.wishlist-btn').forEach((btn) => {
+          const already = wishlist.some(i => i.name === btn.dataset.name);
+          btn.classList.toggle('added', already);
+          btn.innerHTML = already
+            ? '<i class="bi bi-heart-fill"></i> Wishlisted'
+            : '<i class="bi bi-heart"></i> Add to Wishlist';
+        });
+        updateBadge();
+      }
+
+      // qty steppers
+      document.querySelectorAll('.qty-row').forEach((row) => {
+        const dec = row.querySelector('[data-action="dec"]');
+        const inc = row.querySelector('[data-action="inc"]');
+        const val = row.querySelector('.qty-value');
+        dec.addEventListener('click', () => { const v = Math.max(1, parseInt(val.textContent) - 1); val.textContent = v; });
+        inc.addEventListener('click', () => { val.textContent = parseInt(val.textContent) + 1; });
+      });
+
+      document.querySelectorAll('.wishlist-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const qtyEl = btn.closest('.card-body').querySelector('.qty-value');
+          const qty = qtyEl ? parseInt(qtyEl.textContent) : 1;
+          const item = {
+            name: btn.dataset.name,
+            img: btn.dataset.img,
+            category: btn.dataset.category,
+            price: parseInt(btn.dataset.price) || 0,
+            qty
+          };
+          const wishlist = getWishlist();
+          const idx = wishlist.findIndex(i => i.name === item.name);
+          if (idx === -1) {
+            wishlist.push(item);
+            saveWishlist(wishlist);
+            showToast(`♡ ${item.name} added to wishlist`);
+          } else {
+            wishlist.splice(idx, 1);
+            saveWishlist(wishlist);
+            showToast(`${item.name} removed from wishlist`);
+          }
+          syncButtons();
+        });
+      });
+
+      syncButtons();
+
+      // ── Contact Modal ──
+      const contactOverlay = document.getElementById('contactOverlay');
+
+      document.getElementById('openContactModal').addEventListener('click', (e) => {
+        e.preventDefault();
+        contactOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+
+      function closeContactModal() {
+        contactOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      document.getElementById('closeContactModal').addEventListener('click', closeContactModal);
+      contactOverlay.addEventListener('click', (e) => { if (e.target === contactOverlay) closeContactModal(); });
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeContactModal(); });
+
+      document.getElementById('sendContactBtn').addEventListener('click', () => {
+        const name    = document.getElementById('contactName').value.trim();
+        const contact = document.getElementById('contactEmail').value.trim();
+        const message = document.getElementById('contactMessage').value.trim();
+
+        if (!name || !contact || !message) {
+          showToast('Please fill in all fields.');
+          return;
+        }
+
+        closeContactModal();
+        // Clear fields
+        document.getElementById('contactName').value = '';
+        document.getElementById('contactEmail').value = '';
+        document.getElementById('contactMessage').value = '';
+        showToast('🌸 Message sent! We\'ll get back to you soon.');
+      });
+    </script>
+</body>
+</html> 
