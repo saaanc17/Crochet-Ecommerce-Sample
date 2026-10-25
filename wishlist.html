@@ -1,0 +1,786 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARTÉmis | Wishlist</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Poppins:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: #FF2D78 !important;
+            color: #fff !important;
+            font-family: 'Poppins', Arial, sans-serif;
+            position: relative;
+            z-index: 1;
+        }
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: url('flowers/tulip bouquet.jpg') center center/cover no-repeat;
+            opacity: 0.22;
+            filter: blur(18px);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* ── Navbar ── */
+        .navbar, .navbar-light, .bg-light {
+            position: sticky; top: 0; z-index: 3000;
+            background: linear-gradient(90deg, #C2185B 0%, #AD1457 100%) !important;
+            box-shadow: 0 4px 24px 0 rgba(0,0,0,0.28);
+            border-radius: 0 0 18px 18px;
+            backdrop-filter: blur(6px);
+        }
+        .navbar-brand {
+            color: #FFF0F5 !important;
+            font-family: 'Poppins', Arial, sans-serif;
+            font-weight: 900; font-size: 2.2rem; letter-spacing: 2px;
+            transition: transform 0.2s cubic-bezier(0.4,0,0.2,1);
+        }
+        .navbar-brand:hover { transform: scale(1.08); }
+        .navbar-brand, .nav-link, .navbar-nav .nav-link.active {
+            color: #FFF0F5 !important;
+            font-family: 'Poppins', Arial, sans-serif; font-weight: 700;
+        }
+        .navbar-toggler { border-color: #fff; }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba%28255,255,255,1%29' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+        }
+        .navbar-nav { gap: 0.35rem; }
+        .navbar-nav .dropdown-toggle::after { display: none; }
+        .navbar-nav .nav-item.dropdown { position: relative; }
+        .nav-link {
+            transition: transform 0.18s cubic-bezier(0.4,0,0.2,1);
+            display: flex; align-items: center; justify-content: center;
+            padding: 0.5rem 0.85rem !important;
+        }
+        .nav-link i { font-size: 1.45rem; line-height: 1; }
+        .nav-link:hover, .navbar-nav .nav-link.active:hover { transform: scale(1.18); text-decoration: none; }
+        .navbar .dropdown-menu {
+            display: block; visibility: hidden; opacity: 0; pointer-events: none;
+            position: absolute; top: calc(100% - 2px); right: 0; left: auto;
+            margin: 0; padding: 0.45rem; border: none; border-radius: 16px;
+            background: #fff; box-shadow: 0 12px 28px rgba(173,20,87,0.3);
+            min-width: 11.5rem; z-index: 1050;
+            transition: opacity 0.15s ease, visibility 0.15s ease;
+        }
+        .navbar .dropdown-menu::before {
+            content: ""; position: absolute; left: 0; right: 0; top: -18px; height: 18px;
+        }
+        .navbar-nav .nav-item.dropdown:hover > .dropdown-menu,
+        .navbar-nav .nav-item.dropdown:focus-within > .dropdown-menu {
+            visibility: visible; opacity: 1; pointer-events: auto;
+        }
+        .navbar .dropdown-item {
+            color: #FFF0F5; font-family: 'Poppins', Arial, sans-serif;
+            font-weight: 600; font-size: 0.92rem; border-radius: 10px; padding: 0.55rem 0.85rem;
+        }
+        .navbar .dropdown-item:hover, .navbar .dropdown-item:focus {
+            background: linear-gradient(90deg, #FF2D78 0%, #FF80AB 100%); color: #fff;
+        }
+
+        /* ── Page header ── */
+        .page-header {
+            position: relative; z-index: 1;
+            padding: 52px 0 36px; text-align: center;
+        }
+        .page-header .kicker {
+            display: inline-block; margin-bottom: 0.7rem; padding: 0.28rem 0.9rem;
+            border-radius: 999px; background: rgba(255,255,255,0.2); color: #fff;
+            font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+        }
+        .page-header h1 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-size: clamp(2.8rem, 7vw, 4.4rem); font-weight: 700; font-style: italic;
+            line-height: 0.95; margin: 0 0 0.5rem;
+        }
+        .page-header h1::after {
+            content: ""; display: block; width: 4.5rem; height: 3px;
+            margin: 0.9rem auto 0; border-radius: 99px;
+            background: linear-gradient(90deg, #fff 0%, #FF80AB 100%);
+        }
+        .page-header p {
+            max-width: 34rem; margin: 0 auto; font-size: 1rem;
+            color: rgba(255,255,255,0.88); line-height: 1.7;
+        }
+
+        /* ── Wishlist section ── */
+        .wishlist-section {
+            position: relative; z-index: 1;
+            padding-bottom: 72px;
+        }
+
+        /* ── Empty state ── */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 1rem;
+        }
+        .empty-state i {
+            font-size: 4rem;
+            color: rgba(255,255,255,0.35);
+            display: block;
+            margin-bottom: 1.2rem;
+        }
+        .empty-state h3 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .empty-state p {
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 1.5rem;
+        }
+
+        /* ── Wishlist card ── */
+        .wishlist-card {
+            border-radius: 20px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.22);
+            backdrop-filter: blur(8px);
+            transition: transform 0.18s cubic-bezier(0.4,0,0.2,1), box-shadow 0.18s;
+        }
+        .wishlist-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 12px 36px rgba(0,0,0,0.22);
+        }
+        .wishlist-card img {
+            width: 100%; height: 240px; object-fit: cover; display: block;
+        }
+        .wishlist-card .card-info {
+            padding: 0.9rem 1.1rem 1.1rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+        }
+        .wishlist-card .card-info .text h5 {
+            margin: 0 0 0.18rem;
+            font-size: 1rem; font-weight: 700; color: #fff;
+        }
+        .wishlist-card .card-info .text span {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.65);
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+        .remove-btn {
+            flex-shrink: 0;
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.15);
+            border: 1.5px solid rgba(255,255,255,0.4);
+            color: #fff;
+            font-size: 1rem;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            transition: background 0.15s, transform 0.15s;
+        }
+        .remove-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.1);
+        }
+
+        /* ── Item meta (price, qty, subtotal) ── */
+        .item-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem 0.7rem;
+            margin-top: 0.35rem;
+        }
+        .item-price {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #fff;
+        }
+        .item-qty {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.7);
+        }
+        .item-subtotal {
+            font-size: 0.78rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        /* ── Total bar ── */
+        .wishlist-total {
+            margin-top: 2rem;
+            padding: 1rem 1.4rem;
+            border-radius: 16px;
+            background: rgba(255,255,255,0.14);
+            border: 1px solid rgba(255,255,255,0.28);
+            backdrop-filter: blur(8px);
+        }
+        .total-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.85);
+        }
+        .total-price {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        /* ── Proceed to Order button ── */
+        .order-btn {
+            display: inline-flex; align-items: center; gap: 0.45rem;
+            padding: 0.6rem 1.4rem; border: none; border-radius: 999px;
+            background: #fff; color: #C2187A;
+            font-family: 'Poppins', Arial, sans-serif;
+            font-size: 0.9rem; font-weight: 700; letter-spacing: 0.02em;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(255,255,255,0.2);
+            transition: transform 0.18s, opacity 0.18s;
+            text-decoration: none;
+        }
+        .order-btn:hover { transform: scale(1.05); opacity: 0.92; color: #C2187A; }
+
+        /* ── Order Modal ── */
+        .order-overlay {
+            display: none;
+            position: fixed; inset: 0; z-index: 9500;
+            background: rgba(80,8,48,0.85);
+            backdrop-filter: blur(6px);
+            align-items: center; justify-content: center;
+            padding: 1rem;
+        }
+        .order-overlay.active { display: flex; }
+        .order-modal {
+            background: linear-gradient(155deg, rgba(255,255,255,0.18) 0%, rgba(255,128,171,0.15) 100%);
+            border: 1px solid rgba(255,255,255,0.3);
+            backdrop-filter: blur(14px);
+            border-radius: 24px;
+            padding: 2rem 2rem 1.8rem;
+            width: 100%; max-width: 520px;
+            max-height: 90vh; overflow-y: auto;
+            position: relative;
+            box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+            color: #fff;
+        }
+        .order-modal h2 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic; font-size: 2rem; font-weight: 700;
+            margin: 0 0 0.2rem;
+        }
+        .order-modal h2::after {
+            content: ""; display: block; width: 3rem; height: 3px;
+            margin: 0.6rem 0 1.2rem;
+            border-radius: 99px;
+            background: linear-gradient(90deg, #fff 0%, #FF80AB 100%);
+        }
+        .order-modal .close-modal {
+            position: absolute; top: 1rem; right: 1rem;
+            width: 34px; height: 34px; border-radius: 50%;
+            background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.4);
+            color: #fff; font-size: 1.1rem;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: background 0.15s;
+        }
+        .order-modal .close-modal:hover { background: rgba(255,255,255,0.28); }
+        .order-summary {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 0.75rem 1rem;
+            margin-bottom: 1.2rem;
+            font-size: 0.83rem;
+            color: rgba(255,255,255,0.9);
+            max-height: 140px; overflow-y: auto;
+        }
+        .order-summary p { margin: 0.2rem 0; }
+        .order-summary .summary-total {
+            margin-top: 0.5rem; padding-top: 0.5rem;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            font-weight: 700; font-size: 0.9rem;
+        }
+        .order-form label {
+            display: block;
+            font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
+            text-transform: uppercase; color: rgba(255,255,255,0.75);
+            margin-bottom: 0.3rem;
+        }
+        .order-form input,
+        .order-form textarea {
+            width: 100%; padding: 0.6rem 0.9rem;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.12);
+            border: 1.5px solid rgba(255,255,255,0.3);
+            color: #fff; font-family: 'Poppins', Arial, sans-serif;
+            font-size: 0.9rem; margin-bottom: 1rem;
+            outline: none; transition: border-color 0.15s;
+        }
+        .order-form input::placeholder,
+        .order-form textarea::placeholder { color: rgba(255,255,255,0.45); }
+        .order-form input:focus,
+        .order-form textarea:focus { border-color: rgba(255,255,255,0.7); }
+        .order-form textarea { resize: vertical; min-height: 80px; }
+        .order-form .submit-btn {
+            width: 100%; padding: 0.75rem;
+            border: none; border-radius: 999px;
+            background: #fff; color: #C2187A;
+            font-family: 'Poppins', Arial, sans-serif;
+            font-size: 0.95rem; font-weight: 700;
+            cursor: pointer; transition: transform 0.15s, opacity 0.15s;
+        }
+        .order-form .submit-btn:hover { transform: scale(1.02); opacity: 0.92; }
+
+        /* ── Clear all button ── */
+        .clear-btn {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            padding: 0.5rem 1.2rem; border-radius: 999px;
+            background: rgba(255,255,255,0.12);
+            border: 1.5px solid rgba(255,255,255,0.35);
+            color: rgba(255,255,255,0.8); font-size: 0.85rem; font-weight: 600;
+            cursor: pointer; transition: background 0.15s, color 0.15s;
+        }
+        .clear-btn:hover { background: rgba(255,255,255,0.22); color: #fff; }
+
+        /* ── Back link ── */
+        .back-link {
+            position: relative; z-index: 1;
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            padding: 0.55rem 1.2rem; border-radius: 999px;
+            background: rgba(255,255,255,0.15); border: 1.5px solid rgba(255,255,255,0.4);
+            color: #fff; font-weight: 600; font-size: 0.9rem;
+            text-decoration: none; transition: background 0.15s, transform 0.15s;
+            margin-bottom: 2rem;
+        }
+        .back-link:hover { background: rgba(255,255,255,0.28); color: #fff; transform: translateX(-3px); }
+
+        /* ── Shop button ── */
+        .shop-btn {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            padding: 0.5rem 1.2rem; border: none; border-radius: 999px;
+            background: #fff; color: #C2187A; font-weight: 600;
+            font-size: 0.88rem;
+            text-decoration: none; letter-spacing: 0.02em;
+            box-shadow: 0 8px 22px rgba(255,255,255,0.18);
+            transition: transform 0.18s, opacity 0.18s;
+        }
+        .shop-btn:hover { transform: scale(1.05); color: #C2187A; opacity: 0.92; }
+
+        /* ── Toast ── */
+        .wishlist-toast {
+            position: fixed; bottom: 28px; left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            z-index: 9999;
+            background: linear-gradient(135deg, #C2185B 0%, #FF2D78 100%);
+            color: #fff; padding: 0.6rem 1.4rem; border-radius: 999px;
+            font-family: 'Poppins', Arial, sans-serif; font-size: 0.85rem; font-weight: 600;
+            box-shadow: 0 8px 24px rgba(194,24,122,0.35);
+            opacity: 0; transition: opacity 0.3s ease, transform 0.3s ease;
+            pointer-events: none; white-space: nowrap;
+        }
+        .wishlist-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+        /* ── Footer ── */
+        footer {
+            background: rgba(173,20,87,0.6); color: #fff; padding: 42px 0 22px;
+            font-family: 'Poppins', Arial, sans-serif;
+            border-top: 1px solid rgba(255,255,255,0.18);
+            position: relative; z-index: 1;
+        }
+        footer h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; font-size: 2rem; font-weight: 700; }
+        footer h4 { font-weight: 700; }
+        footer a { color: #fff; text-decoration: none; }
+        footer a:hover { color: #FFB6D5; }
+        .footer-links { display: flex; flex-direction: column; gap: 0.4rem; }
+        .footer-social { display: flex; gap: 0.7rem; font-size: 1.35rem; }
+        .footer-copy {
+            margin-top: 1.8rem; padding-top: 1rem;
+            border-top: 1px solid rgba(255,255,255,0.16);
+            text-align: center; color: rgba(255,255,255,0.8); font-size: 0.9rem;
+        }
+
+        /* ── Order success state ── */
+        .order-success {
+            display: none;
+            text-align: center;
+            padding: 4rem 1rem 5rem;
+            animation: fadeUp 0.5s ease forwards;
+        }
+        .order-success.active { display: block; }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .success-icon {
+            width: 88px; height: 88px; border-radius: 50%;
+            background: rgba(255,255,255,0.18);
+            border: 2px solid rgba(255,255,255,0.4);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.6rem;
+            backdrop-filter: blur(6px);
+        }
+        .order-success h2 {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+            font-style: italic;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 0.6rem;
+            color: #fff;
+        }
+        .order-success p {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.85);
+            max-width: 30rem;
+            margin: 0 auto 2rem;
+            line-height: 1.7;
+        }
+        .success-home-btn {
+            display: inline-flex; align-items: center; gap: 0.45rem;
+            padding: 0.65rem 1.5rem; border-radius: 999px;
+            background: rgba(255,255,255,0.15);
+            border: 1.5px solid rgba(255,255,255,0.45);
+            color: #fff; font-weight: 600; font-size: 0.92rem;
+            text-decoration: none;
+            transition: background 0.15s, transform 0.15s;
+        }
+        .success-home-btn:hover { background: rgba(255,255,255,0.26); color: #fff; transform: scale(1.04); }
+
+        /* ── Cursor tip ── */
+        .cursor-tip {
+            position: fixed; top: 0; left: 0; z-index: 9999; pointer-events: none;
+            opacity: 0; transform: translate(14px,18px) scale(0.92);
+            padding: 0.38rem 0.78rem; border-radius: 999px;
+            background: linear-gradient(135deg, #C2185B 0%, #FF2D78 100%);
+            color: #fff; font-family: 'Poppins', Arial, sans-serif;
+            font-size: 0.78rem; font-weight: 600; letter-spacing: 0.04em;
+            box-shadow: 0 8px 22px rgba(194,24,122,0.35);
+            border: 1px solid rgba(255,255,255,0.45); white-space: nowrap;
+            transition: opacity 0.16s ease, transform 0.16s ease;
+        }
+        .cursor-tip.is-visible { opacity: 1; transform: translate(14px,18px) scale(1); }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="ARTEmis.jpg" alt="ARTÉmis Logo" style="height:40px;width:40px;object-fit:cover;border-radius:50%;margin-right:12px;vertical-align:middle;transform:scale(1.30);">
+                ARTÉmis
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html" aria-label="Home" data-tip="Home">
+                            <i class="bi bi-house-door-fill"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="productsDropdown" aria-haspopup="true" aria-expanded="false" aria-label="Products" data-tip="Products">
+                            <i class="bi bi-grid-fill"></i>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="productsDropdown">
+                            <li><a class="dropdown-item" href="wearables.html">Wearables</a></li>
+                            <li><a class="dropdown-item" href="keychains.html">Keychains</a></li>
+                            <li><a class="dropdown-item" href="flowers.html">Flowers</a></li>
+                            <li><a class="dropdown-item" href="amigurumi.html">Amigurumi</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="wishlist.html" aria-label="Wishlist" data-tip="Wishlist">
+                            <i class="bi bi-heart-fill"></i>
+                        </a>
+                    </li>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <span class="kicker">Your saved items</span>
+            <h1>Wishlist</h1>
+            <p>Everything you've been eyeing — saved in one place for when you're ready.</p>
+        </div>
+    </header>
+
+    <!-- Wishlist Content -->
+    <main class="wishlist-section">
+        <div class="container">
+
+            <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap gap-3">
+                <a href="index.html" class="back-link" style="margin-bottom:0;">
+                    <i class="bi bi-arrow-left"></i> Back to Home
+                </a>
+                <button class="clear-btn" id="clearAllBtn">
+                    <i class="bi bi-trash3"></i> Clear all
+                </button>
+            </div>
+
+            <!-- Items render here -->
+            <div class="row g-4" id="wishlistGrid"></div>
+
+            <!-- Empty state (hidden when items exist) -->
+            <div class="empty-state" id="emptyState" style="display:none;">
+                <i class="bi bi-heart"></i>
+                <h3>Nothing here yet</h3>
+                <p>Head back to the shop and add some pieces you love.</p>
+            </div>
+
+            <!-- Order success state -->
+            <div class="order-success" id="orderSuccess">
+                <div class="success-icon">🌸</div>
+                <h2>Order Received!</h2>
+                <p>Thank you for your order. We'll be reviewing it and will get back to you shortly. Can't wait to make something special for you!</p>
+                <a href="index.html" class="success-home-btn">
+                    <i class="bi bi-house-door-fill"></i> Back to Home
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Order Modal -->
+    <div class="order-overlay" id="orderOverlay" role="dialog" aria-modal="true" aria-label="Place your order">
+        <div class="order-modal">
+            <button class="close-modal" id="closeOrderModal" aria-label="Close"><i class="bi bi-x"></i></button>
+            <h2>Place Order</h2>
+            <p style="font-size:0.85rem;color:rgba(255,255,255,0.75);margin-bottom:1rem;">
+                Review your items below, fill in your details, and we'll get in touch to confirm your order.
+            </p>
+            <!-- Pre-filled summary -->
+            <div class="order-summary" id="orderSummary"></div>
+            <!-- Form -->
+            <div class="order-form">
+                <label for="orderName">Your Name</label>
+                <input type="text" id="orderName" placeholder="e.g. Maria Santos" required>
+
+                <label for="orderContact">Contact (FB / IG / email)</label>
+                <input type="text" id="orderContact" placeholder="e.g. @mariasantos or maria@email.com" required>
+
+                <label for="orderNotes">Notes <span style="font-weight:400;text-transform:none;letter-spacing:0;">(optional)</span></label>
+                <textarea id="orderNotes" placeholder="Color preferences, size, special requests…"></textarea>
+
+                <button class="submit-btn" id="submitOrderBtn">
+                    <i class="bi bi-send"></i> Send Order via Email
+                </button>
+                <p style="text-align:center;font-size:0.75rem;color:rgba(255,255,255,0.55);margin-top:0.75rem;">
+                    This will open your email app with your order pre-filled.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-5">
+                    <h3>ARTÉmis</h3>
+                    <p>Handmade crochet wearables, flowers, keychains, and amigurumi crafted with care.</p>
+                </div>
+                <div class="col-md-3">
+                    <h4 class="h6 mb-3">Explore</h4>
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="index.html#products">Products</a>
+                        <a href="index.html#about">About</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="h6 mb-3">Say hello</h4>
+                    <p class="mb-2">For orders and custom requests, message us on social or email.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                        <a href="mailto:hello@artemis.shop" aria-label="Email"><i class="bi bi-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+            <p class="footer-copy mb-0">&copy; 2026 ARTÉmis. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="cursor-tip" id="cursorTip" aria-hidden="true"></div>
+    <div class="wishlist-toast" id="wishlistToast" aria-live="polite"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // ── Cursor tip ──
+        const cursorTip = document.getElementById('cursorTip');
+        document.querySelectorAll('[data-tip]').forEach((el) => {
+            el.addEventListener('mouseenter', () => { cursorTip.textContent = el.getAttribute('data-tip'); cursorTip.classList.add('is-visible'); });
+            el.addEventListener('mousemove', (e) => { cursorTip.style.left = `${e.clientX}px`; cursorTip.style.top = `${e.clientY}px`; });
+            el.addEventListener('mouseleave', () => { cursorTip.classList.remove('is-visible'); });
+        });
+        document.querySelectorAll('.dropdown-menu').forEach((m) => m.addEventListener('mouseenter', () => cursorTip.classList.remove('is-visible')));
+
+        // ── Wishlist helpers ──
+        const toast = document.getElementById('wishlistToast');
+        let toastTimer;
+
+        function showToast(msg) {
+            toast.textContent = msg;
+            toast.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => toast.classList.remove('show'), 2400);
+        }
+
+        function getWishlist() {
+            return JSON.parse(localStorage.getItem('artemis_wishlist') || '[]');
+        }
+
+        function saveWishlist(list) {
+            localStorage.setItem('artemis_wishlist', JSON.stringify(list));
+        }
+
+        // ── Render ──
+        function render() {
+            const wishlist = getWishlist();
+            const grid     = document.getElementById('wishlistGrid');
+            const empty    = document.getElementById('emptyState');
+            const clearBtn = document.getElementById('clearAllBtn');
+
+            grid.innerHTML = '';
+
+            // Always remove stale total first
+            const oldTotal = document.getElementById('wishlistTotal');
+            if (oldTotal) oldTotal.remove();
+
+            if (wishlist.length === 0) {
+                empty.style.display = 'block';
+                clearBtn.style.display = 'none';
+                return;
+            }
+
+            empty.style.display = 'none';
+            clearBtn.style.display = 'inline-flex';
+
+            wishlist.forEach((item, idx) => {
+                const col = document.createElement('div');
+                col.className = 'col-12 col-sm-6 col-md-4';
+                const subtotal = (item.price || 0) * (item.qty || 1);
+                col.innerHTML = `
+                    <div class="wishlist-card">
+                        <img src="${item.img}" alt="${item.name}" loading="lazy">
+                        <div class="card-info">
+                            <div class="text">
+                                <h5>${item.name}</h5>
+                                <span>${item.category}</span>
+                                <div class="item-meta">
+                                    <span class="item-price">₱${item.price ? item.price.toLocaleString() : '—'}</span>
+                                    <span class="item-qty">Qty: ${item.qty || 1}</span>
+                                    <span class="item-subtotal">Subtotal: ₱${subtotal.toLocaleString()}</span>
+                                </div>
+                            </div>
+                            <button class="remove-btn" data-index="${idx}" aria-label="Remove ${item.name} from wishlist">
+                                <i class="bi bi-heart-fill"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(col);
+            });
+
+            // Attach remove listeners
+            grid.querySelectorAll('.remove-btn').forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    const list = getWishlist();
+                    const removed = list.splice(parseInt(btn.dataset.index, 10), 1);
+                    saveWishlist(list);
+                    showToast(`${removed[0].name} removed from wishlist`);
+                    render();
+                });
+            });
+
+            // ── Total ──
+            const total = wishlist.reduce((sum, i) => sum + (i.price || 0) * (i.qty || 1), 0);
+            const totalEl = document.createElement('div');
+            totalEl.id = 'wishlistTotal';
+            totalEl.className = 'wishlist-total';
+            totalEl.innerHTML = `
+                <div class="total-inner">
+                    <span>${wishlist.reduce((s,i) => s + (i.qty||1), 0)} item(s) in wishlist</span>
+                    <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+                        <span class="total-price">Total: ₱${total.toLocaleString()}</span>
+                        <button class="order-btn" id="proceedOrderBtn">
+                            <i class="bi bi-send"></i> Proceed to Order
+                        </button>
+                    </div>
+                </div>
+            `;
+            grid.parentElement.appendChild(totalEl);
+
+            // Attach order button listener after render
+            document.getElementById('proceedOrderBtn').addEventListener('click', openOrderModal);
+        }
+
+        // ── Clear all ──
+        document.getElementById('clearAllBtn').addEventListener('click', () => {
+            saveWishlist([]);
+            showToast('Wishlist cleared');
+            render();
+        });
+
+        // ── Order Modal ──
+        const orderOverlay = document.getElementById('orderOverlay');
+
+        function openOrderModal() {
+            const wishlist = getWishlist();
+            const summary  = document.getElementById('orderSummary');
+            const total    = wishlist.reduce((s, i) => s + (i.price || 0) * (i.qty || 1), 0);
+            summary.innerHTML = wishlist.map(i =>
+                `<p>• ${i.name} × ${i.qty || 1} — ₱${((i.price || 0) * (i.qty || 1)).toLocaleString()}</p>`
+            ).join('') +
+            `<p class="summary-total">Total: ₱${total.toLocaleString()}</p>`;
+            orderOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeOrderModal() {
+            orderOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('closeOrderModal').addEventListener('click', closeOrderModal);
+        orderOverlay.addEventListener('click', (e) => { if (e.target === orderOverlay) closeOrderModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeOrderModal(); });
+
+        document.getElementById('submitOrderBtn').addEventListener('click', () => {
+            const name    = document.getElementById('orderName').value.trim();
+            const contact = document.getElementById('orderContact').value.trim();
+
+            if (!name || !contact) {
+                showToast('Please fill in your name and contact.');
+                return;
+            }
+
+            // Close modal, clear wishlist, show success screen
+            closeOrderModal();
+            saveWishlist([]);
+
+            // Hide normal wishlist content, show success
+            document.getElementById('wishlistGrid').style.display = 'none';
+            document.getElementById('emptyState').style.display = 'none';
+            const existingTotal = document.getElementById('wishlistTotal');
+            if (existingTotal) existingTotal.remove();
+            document.querySelector('.d-flex.align-items-center.justify-content-between').style.display = 'none';
+            document.getElementById('orderSuccess').classList.add('active');
+        });
+
+        // Initial render
+        render();
+    </script>
+</body>
+</html>
